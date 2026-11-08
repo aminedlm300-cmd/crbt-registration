@@ -1,0 +1,1420 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسجيلات | CRBT 1963</title>
+
+    <style>
+        :root {
+            --navy: #07182f;
+            --navy-light: #102a49;
+            --orange: #f59e0b;
+            --white: #fff;
+            --muted: #64748b;
+            --bg: #f3f6fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: var(--bg);
+            color: #172338;
+            line-height: 1.8;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* HEADER */
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 14px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 2px solid var(--orange);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            color: white;
+        }
+
+        .brand img {
+            width: 67px;
+            height: 67px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--orange);
+        }
+
+        .brand h2 {
+            margin: 0;
+            font-size: clamp(14px, 2vw, 19px);
+            line-height: 1.5;
+        }
+
+        .brand small {
+            color: var(--orange);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+            border: 1px solid #ffffff45;
+            border-radius: 8px;
+            padding: 9px 18px;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .nav-link:hover {
+            background: var(--orange);
+            color: var(--navy);
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 490px;
+            display: flex;
+            align-items: center;
+            padding: 75px 8%;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(4,16,34,.95), rgba(4,16,34,.70)),
+                url("https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=2000&q=85")
+                center 45% / cover no-repeat;
+            border-bottom: 5px solid var(--orange);
+        }
+
+        .hero-content {
+            max-width: 760px;
+            animation: appear .8s ease both;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--orange);
+            border: 1px solid #f59e0b80;
+            background: #f59e0b12;
+            padding: 5px 13px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 54px);
+            line-height: 1.5;
+            margin: 18px 0 12px;
+        }
+
+        .hero h1 span {
+            color: var(--orange);
+        }
+
+        .hero p {
+            color: #e0e8f2;
+            font-size: 16px;
+            max-width: 650px;
+            margin: 0 0 27px;
+        }
+
+        /* BUTTONS */
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--orange);
+            color: #07182f;
+            border: 0;
+            border-radius: 8px;
+            padding: 13px 27px;
+            font: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform .2s, background-color .2s;
+        }
+
+        .button:hover {
+            background: #ffb52e;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            color: white;
+            border: 1px solid #ffffff70;
+            border-radius: 8px;
+            padding: 12px 22px;
+            display: inline-block;
+            margin-right: 8px;
+            transition: .2s;
+        }
+
+        .button-outline:hover {
+            background: #ffffff15;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 700px;
+            margin-top: 43px;
+            border-top: 1px solid #ffffff30;
+            padding-top: 20px;
+            gap: 20px;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--orange);
+            font-size: 23px;
+        }
+
+        .stat span {
+            color: #d6e0ec;
+            font-size: 12px;
+        }
+
+        /* FEATURES */
+        .section-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-heading small {
+            color: #b66a00;
+            font-weight: bold;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 5px 0;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .features {
+            padding: 65px 7%;
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .feature {
+            padding: 25px;
+            background: #f7f9fc;
+            border: 1px solid #e6ebf2;
+            border-radius: 13px;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px #07182f12;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: #fff0d4;
+            border-radius: 12px;
+            font-size: 24px;
+        }
+
+        .feature h3 {
+            color: var(--navy);
+            margin: 12px 0 5px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* BASKETBALL GALLERY */
+        .crbt-gallery {
+            max-width: 1180px;
+            margin: 45px auto;
+            padding: 45px 24px;
+            background: linear-gradient(145deg, #ffffff, #f0f4fa);
+            border: 1px solid #e3eaf3;
+            border-radius: 22px;
+        }
+
+        .gallery-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .gallery-heading span {
+            color: #d98500;
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: 4px;
+        }
+
+        .gallery-heading h2 {
+            color: var(--navy);
+            font-size: clamp(26px, 4vw, 38px);
+            margin: 8px 0;
+        }
+
+        .gallery-heading p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-auto-rows: 245px;
+            gap: 16px;
+        }
+
+        .gallery-photo {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            background: var(--navy);
+            box-shadow: 0 8px 22px rgba(6,20,45,.12);
+            isolation: isolate;
+        }
+
+        .gallery-photo img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform .45s ease, filter .45s ease;
+        }
+
+        .gallery-photo::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+            background: linear-gradient(
+                to top,
+                rgba(4,16,34,.88),
+                transparent 65%
+            );
+            pointer-events: none;
+        }
+
+        .gallery-photo:hover img {
+            transform: scale(1.045);
+            filter: saturate(1.08);
+        }
+
+        .photo-caption {
+            position: absolute;
+            z-index: 1;
+            inset: auto 0 0;
+            padding: 32px 17px 16px;
+            color: white;
+            font-weight: 800;
+            font-size: 17px;
+            text-align: center;
+        }
+
+        .gallery-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-top: 25px;
+        }
+
+        .gallery-footer span {
+            width: 40px;
+            height: 2px;
+            background: var(--orange);
+        }
+
+        .gallery-footer p {
+            margin: 0;
+            color: var(--navy);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 3px;
+        }
+
+        /* REGISTRATION FORM */
+        main {
+            max-width: 1000px;
+            margin: 65px auto;
+            padding: 0 18px;
+            scroll-margin-top: 25px;
+        }
+
+        .form-card {
+            background: white;
+            padding: clamp(22px, 5vw, 48px);
+            border-radius: 18px;
+            box-shadow: 0 15px 50px #07182f10;
+            border: 1px solid #e7ebf2;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-title .mini-logo {
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--orange);
+            padding: 3px;
+            background: white;
+        }
+
+        .form-title h2 {
+            margin: 10px 0 0;
+            color: var(--navy);
+            font-size: 27px;
+        }
+
+        .form-title p {
+            color: var(--muted);
+            margin: 4px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            min-width: 0;
+        }
+
+        .field label {
+            display: block;
+            color: #23344c;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            display: block;
+            width: 100%;
+            min-width: 0;
+            min-height: 56px;
+            padding: 13px 14px;
+            border: 1px solid #d6deea;
+            border-radius: 9px;
+            background: #fbfcfe;
+            color: #07182f;
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 15px;
+            opacity: 1;
+            outline: none;
+            transition: border-color .2s, box-shadow .2s;
+        }
+
+        .field input::placeholder,
+        .field textarea::placeholder {
+            color: #64748b;
+            opacity: 1;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--orange);
+            box-shadow: 0 0 0 3px #f59e0b25;
+            background: white;
+        }
+
+        .field input[type="date"] {
+            direction: ltr;
+            color-scheme: light;
+            cursor: pointer;
+        }
+
+        .field input[type="date"]::-webkit-calendar-picker-indicator {
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .ltr {
+            direction: ltr;
+            text-align: left;
+        }
+
+        .errors {
+            color: #b91c1c;
+            font-size: 12px;
+        }
+
+        .notice {
+            background: #fff8e9;
+            border-right: 4px solid var(--orange);
+            color: #76501b;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-size: 13px;
+        }
+
+        .success {
+            background: #ecfdf5;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 15px;
+            border-radius: 9px;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .submit-row {
+            text-align: center;
+        }
+
+        .submit-row .button {
+            width: 100%;
+            max-width: 360px;
+            font-size: 16px;
+        }
+
+        .print-button {
+            margin-top: 12px;
+            background: var(--navy);
+            color: white;
+        }
+
+        .print-button:hover {
+            background: var(--navy-light);
+        }
+
+        /* CLOSING SECTION */
+        .closing {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            border-top: 4px solid var(--orange);
+        }
+
+        .closing h2 {
+            margin: 0 0 8px;
+        }
+
+        .closing p {
+            color: #c8d5e5;
+            margin: 0 0 20px;
+        }
+
+        footer {
+            background: #041022;
+            color: #b9c6d7;
+            text-align: center;
+            padding: 23px 15px;
+            font-size: 13px;
+        }
+
+        footer strong {
+            color: var(--orange);
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 760px) {
+            header {
+                padding: 12px 5%;
+            }
+
+            .brand img {
+                width: 54px;
+                height: 54px;
+            }
+
+            .nav-link {
+                padding: 8px 11px;
+                font-size: 12px;
+            }
+
+            .hero {
+                min-height: 440px;
+                padding: 55px 7%;
+            }
+
+            .hero p {
+                font-size: 14px;
+            }
+
+            .stats {
+                gap: 10px;
+            }
+
+            .stat strong {
+                font-size: 19px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features {
+                padding: 45px 6%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: 210px;
+                gap: 12px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                margin: 40px auto;
+            }
+        }
+
+        @media (max-width: 460px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 225px;
+            }
+
+            .gallery-heading span {
+                letter-spacing: 2px;
+            }
+
+            .crbt-gallery {
+                margin: 30px 12px;
+                padding: 32px 14px;
+            }
+
+            .hero {
+                padding: 45px 6%;
+            }
+
+            .button-outline {
+                margin: 10px 0 0;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* PRINT */
+        
+@page {
+    size: A4 portrait;
+    margin: 9mm;
+}
+
+@media print {
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        box-sizing: border-box !important;
+    }
+
+    html,
+    body {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: white !important;
+        color: #07182f !important;
+        font-family: Tahoma, Arial, sans-serif !important;
+    }
+
+    header,
+    .hero,
+    .features,
+    .crbt-gallery,
+    .closing,
+    footer,
+    .notice,
+    .submit-row {
+        display: none !important;
+    }
+
+    main {
+        display: block !important;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .form-card {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 5mm !important;
+        border: 1px solid #d8e0eb !important;
+        border-top: 4px solid #f59e0b !important;
+        border-radius: 8px !important;
+        box-shadow: none !important;
+        background: white !important;
+    }
+
+    .form-title {
+        margin: 0 0 5mm !important;
+        padding-bottom: 3mm !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+        text-align: center !important;
+    }
+
+    .form-title .mini-logo {
+        width: 18mm !important;
+        height: 18mm !important;
+        padding: 1mm !important;
+        border: 1px solid #f59e0b !important;
+    }
+
+    .form-title h2 {
+        margin: 2mm 0 0 !important;
+        font-size: 19pt !important;
+        color: #07182f !important;
+    }
+
+    .form-title p {
+        margin: 1mm 0 0 !important;
+        font-size: 9pt !important;
+        color: #64748b !important;
+    }
+
+    form {
+        width: 100% !important;
+    }
+
+    .form-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 4mm 6mm !important;
+        align-items: start !important;
+    }
+
+    .field {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1mm !important;
+        min-width: 0 !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .field label {
+        font-size: 9pt !important;
+        font-weight: bold !important;
+        color: #07182f !important;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+        display: block !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 9mm !important;
+        height: 9mm !important;
+        padding: 2mm 3mm !important;
+        border: 1px solid #cbd5e1 !important;
+        border-radius: 4px !important;
+        background: white !important;
+        color: #07182f !important;
+        font-size: 9pt !important;
+        box-shadow: none !important;
+    }
+
+    .field input[type="date"] {
+        direction: ltr !important;
+    }
+
+    .errors {
+        font-size: 8pt !important;
+        color: #b91c1c !important;
+    }
+
+    .success {
+        margin: 0 0 3mm !important;
+        padding: 2mm !important;
+        font-size: 9pt !important;
+    }
+
+    .form-card,
+    .form-grid,
+    .field {
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+}
+
+
+/* OFFICIAL DOCUMENTS */
+.official-documents {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 28px;
+    direction: rtl;
+}
+
+.document-box {
+    position: relative;
+    padding: 20px;
+    min-height: 245px;
+    background: #fff;
+    border: 1px solid #d8e1ed;
+    border-top: 4px solid #f59e0b;
+    border-radius: 12px;
+    color: #07182f;
+}
+
+.document-heading {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid #e5eaf1;
+}
+
+.document-heading h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.document-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #fff4df;
+    color: #e58b00;
+    font-size: 19px;
+}
+
+.document-subtitle {
+    margin-right: auto;
+    color: #8995a7;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    direction: ltr;
+}
+
+.document-intro {
+    font-size: 12px;
+    line-height: 2;
+    color: #334155;
+    text-align: right;
+    margin: 8px 0;
+}
+
+.medical-options {
+    margin: 12px 0;
+    display: grid;
+    gap: 10px;
+}
+
+.medical-option {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11px;
+    line-height: 1.8;
+}
+
+.empty-square {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+    border: 1.4px solid #64748b;
+    border-radius: 2px;
+}
+
+.document-line {
+    margin-top: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.document-line div {
+    height: 22px;
+    border-bottom: 1px dotted #94a3b8;
+}
+
+.document-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 16px;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.signature-line {
+    height: 32px;
+    border-bottom: 1px dotted #94a3b8;
+}
+
+.stamp-area {
+    height: 58px;
+    border: 1px dashed #cbd5e1;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.parent-signature {
+    height: 58px;
+    border-bottom: 1px dotted #94a3b8;
+}
+
+/* PRINT DOCUMENTS */
+@media print {
+    .official-documents {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 5mm !important;
+        margin-top: 5mm !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .document-box {
+        min-height: 0 !important;
+        padding: 3mm !important;
+        border: 1px solid #cbd5e1 !important;
+        border-top: 2px solid #f59e0b !important;
+        border-radius: 5px !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .document-heading {
+        gap: 4px !important;
+        margin-bottom: 2mm !important;
+        padding-bottom: 2mm !important;
+    }
+
+    .document-heading h3 {
+        font-size: 11pt !important;
+    }
+
+    .document-icon {
+        width: 7mm !important;
+        height: 7mm !important;
+    }
+
+    .document-subtitle {
+        font-size: 6pt !important;
+    }
+
+    .document-intro {
+        font-size: 8pt !important;
+        line-height: 1.7 !important;
+        margin: 2mm 0 !important;
+    }
+
+    .medical-options {
+        gap: 2mm !important;
+        margin: 2mm 0 !important;
+    }
+
+    .medical-option {
+        font-size: 7.5pt !important;
+        gap: 2mm !important;
+    }
+
+    .empty-square {
+        width: 3.5mm !important;
+        height: 3.5mm !important;
+    }
+
+    .document-line {
+        margin-top: 2mm !important;
+        font-size: 7.5pt !important;
+    }
+
+    .document-line div {
+        height: 5mm !important;
+    }
+
+    .document-footer {
+        gap: 2mm !important;
+        margin-top: 3mm !important;
+        font-size: 7pt !important;
+    }
+
+    .signature-line {
+        height: 8mm !important;
+    }
+
+    .stamp-area,
+    .parent-signature {
+        height: 12mm !important;
+    }
+}
+
+
+/* Hide official documents on the normal website */
+@media screen {
+    .official-documents {
+        display: none !important;
+    }
+}
+
+/* Professional print-only layout */
+@media print {
+    .official-documents {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        grid-column: 1 / -1 !important;
+        gap: 6mm !important;
+        margin: 6mm 0 0 !important;
+        padding: 0 !important;
+        direction: rtl !important;
+        align-items: stretch !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .document-box {
+        width: 100% !important;
+        min-width: 0 !important;
+        min-height: 0 !important;
+        padding: 4mm !important;
+        background: #fff !important;
+        border: 1px solid #cbd5e1 !important;
+        border-top: 3px solid #f59e0b !important;
+        border-radius: 5px !important;
+        box-shadow: none !important;
+        break-inside: avoid !important;
+        page-break-inside: avoid !important;
+    }
+
+    .document-heading {
+        display: flex !important;
+        align-items: center !important;
+        gap: 2mm !important;
+        margin-bottom: 3mm !important;
+        padding-bottom: 2mm !important;
+        border-bottom: 1px solid #e2e8f0 !important;
+    }
+
+    .document-heading h3 {
+        font-size: 12pt !important;
+        color: #07182f !important;
+    }
+
+    .document-subtitle {
+        font-size: 6.5pt !important;
+        color: #64748b !important;
+    }
+
+    .document-intro {
+        font-size: 8.5pt !important;
+        line-height: 1.8 !important;
+        color: #334155 !important;
+    }
+
+    .medical-option {
+        font-size: 8pt !important;
+        line-height: 1.7 !important;
+    }
+
+    .document-footer {
+        margin-top: 4mm !important;
+        font-size: 8pt !important;
+    }
+
+    .stamp-area,
+    .parent-signature {
+        min-height: 15mm !important;
+    }
+}
+
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <a class="brand" href="#" aria-label="الصفحة الرئيسية">
+            <img
+                src="{% static 'registrations/images/crbt-logo.jfif' %}"
+                alt="شعار نادي شباب تيبازة لكرة السلة">
+
+            <div>
+                <h2>نادي شباب تيبازة لكرة السلة</h2>
+                <small>CRBT · 1963</small>
+            </div>
+        </a>
+
+        <a class="nav-link" href="#registration">التسجيلات ↙</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">CRBT 1963 · تيبازة</span>
+
+            <h1>
+                يعلن نادي شباب تيبازة لكرة السلة<br>
+                عن <span>فتح باب التسجيلات</span>
+            </h1>
+
+            <p>
+                هل تحب كرة السلة وتحلم بتطوير مستواك؟
+                ندعوك للانضمام إلى عائلتنا الرياضية،
+                والتعلّم في أجواء من الانضباط والاحترام والعمل الجماعي.
+            </p>
+
+            <a class="button" href="#registration">ابدأ التسجيل الآن ←</a>
+            <a class="button-outline" href="#about">اكتشف النادي</a>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>1963</strong>
+                    <span>منذ 63 سنة</span>
+                </div>
+
+                <div class="stat">
+                    <strong>CRBT</strong>
+                    <span>الشباب الرياضي لبلدية تيبازة</span>
+                </div>
+
+                <div class="stat">
+                    <strong>🏀</strong>
+                    <span>شغف كرة السلة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <div class="section-heading">
+            <small>مرحبًا بكم في عائلتنا</small>
+            <h2>أكثر من مجرد لعبة</h2>
+            <p>الرياضة، الانضباط، وروح الفريق.</p>
+        </div>
+
+        <div class="feature-grid">
+            <article class="feature">
+                <div class="feature-icon">🏀</div>
+                <h3>تطوير المهارات</h3>
+                <p>التدرّب على أساسيات كرة السلة والعمل على تطوير المستوى الرياضي.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">🤝</div>
+                <h3>روح الفريق</h3>
+                <p>تعزيز التعاون والاحترام والانضباط داخل الفريق وخارجه.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">🏆</div>
+                <h3>طموح رياضي</h3>
+                <p>تشجيع المواهب الشابة على التعلّم والتقدّم وتحقيق أهدافها.</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- BASKETBALL GALLERY -->
+    <section class="crbt-gallery" id="gallery">
+        <div class="gallery-heading">
+            <span>CRBT 1963 · TIPAZA</span>
+            <h2>Au cœur de l'action</h2>
+            <p>Passion, discipline et esprit d'équipe.</p>
+        </div>
+
+        <div class="gallery-grid">
+            <article class="gallery-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=1000&q=85"
+                    alt="Basketball game atmosphere"
+                    loading="lazy">
+                <div class="photo-caption">L'esprit d'équipe</div>
+            </article>
+
+            <article class="gallery-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&w=1000&q=85"
+                    alt="Basketball on the court"
+                    loading="lazy">
+                <div class="photo-caption">La passion du jeu</div>
+            </article>
+
+            <article class="gallery-photo">
+                <img
+                    src="https://images.unsplash.com/photo-1504450758481-7338eba7524a?auto=format&fit=crop&w=1000&q=85"
+                    alt="Basketball hoop"
+                    loading="lazy">
+                <div class="photo-caption">Viser l'excellence</div>
+            </article>
+        </div>
+
+        <div class="gallery-footer">
+            <span></span>
+            <p>CRBT 1963 — TIPAZA</p>
+            <span></span>
+        </div>
+    </section>
+
+    <main id="registration">
+        <section class="form-card">
+
+            <div class="form-title">
+                <img
+                    class="mini-logo"
+                    src="{% static 'registrations/images/crbt-logo.jfif' %}"
+                    alt="شعار CRBT">
+
+                <h2>استمارة تسجيل لاعب</h2>
+                <p>يرجى إدخال المعلومات بدقة قبل إرسال الطلب.</p>
+            </div>
+
+            {% if submitted %}
+                <div class="success" role="status">
+                    <strong>تم إرسال طلب التسجيل بنجاح!</strong><br>
+                    سيقوم النادي بمراجعة الطلب والتواصل معكم عند الحاجة.
+                </div>
+            {% endif %}
+
+            {% if form.non_field_errors %}
+                <div class="errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <form method="post" action="{% url 'home' %}">
+                {% csrf_token %}
+
+                <div class="form-grid">
+
+                    
+<div class="field">
+    <label for="{{ form.first_name_ar.id_for_label }}">الاسم بالعربية *</label>
+    {{ form.first_name_ar }}
+    <div class="errors">{{ form.first_name_ar.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.last_name_ar.id_for_label }}">اللقب بالعربية *</label>
+    {{ form.last_name_ar }}
+    <div class="errors">{{ form.last_name_ar.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.first_and_last_name_latin.id_for_label }}">الاسم واللقب باللاتينية *</label>
+    {{ form.first_and_last_name_latin }}
+    <div class="errors">{{ form.first_and_last_name_latin.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.blood_group.id_for_label }}">فصيلة الدم</label>
+    {{ form.blood_group }}
+    <div class="errors">{{ form.blood_group.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.birth_date.id_for_label }}">تاريخ الازدياد *</label>
+    {{ form.birth_date }}
+    <div class="errors">{{ form.birth_date.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.birth_place.id_for_label }}">مكان الميلاد *</label>
+    {{ form.birth_place }}
+    <div class="errors">{{ form.birth_place.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.guardian_phone.id_for_label }}">رقم هاتف الولي *</label>
+    {{ form.guardian_phone }}
+    <div class="errors">{{ form.guardian_phone.errors }}</div>
+</div>
+
+<div class="field">
+    <label for="{{ form.email.id_for_label }}">البريد الإلكتروني (اختياري)</label>
+    {{ form.email }}
+    <div class="errors">{{ form.email.errors }}</div>
+</div>
+
+
+                <div class="notice">
+                    🔒 تُستخدم المعلومات لغرض التسجيل في النادي فقط،
+                    ولا تُعرض البيانات الشخصية للعامة. يرجى التأكد من موافقة
+                    ولي الأمر إذا كان اللاعب قاصرًا.
+                </div>
+
+                <div class="submit-row">
+                    <button class="button" type="submit">
+                        إرسال طلب التسجيل ←
+                    </button>
+
+                    <button
+                        class="button print-button"
+                        type="button"
+                        onclick="window.print()">
+                        🖨️ طباعة الاستمارة
+                    </button>
+                </div>
+            
+            
+<!-- MEDICAL CERTIFICATE AND PARENTAL AUTHORIZATION -->
+<div class="official-documents">
+
+    <section class="document-box">
+        <div class="document-heading">
+            <span class="document-icon">✚</span>
+            <h3>شهادة طبية</h3>
+            <span class="document-subtitle">CERTIFICAT MÉDICAL</span>
+        </div>
+
+        <p class="document-intro">
+            يشهد الطبيب الممضي أسفله أنه قام بفحص المعني بالأمر،
+            وبعد الفحص الطبي:
+        </p>
+
+        <div class="medical-options">
+            <div class="medical-option">
+                <span class="empty-square"></span>
+                <span>لا يوجد مانع طبي من ممارسة النشاط الرياضي.</span>
+            </div>
+            <div class="medical-option">
+                <span class="empty-square"></span>
+                <span>يوجد مانع طبي يستدعي المتابعة أو الفحص.</span>
+            </div>
+        </div>
+
+        <div class="document-line">
+            <span>ملاحظات الطبيب:</span>
+            <div></div>
+        </div>
+
+        <div class="document-footer">
+            <div>
+                <span>التاريخ:</span>
+                <div class="signature-line"></div>
+            </div>
+            <div>
+                <span>إمضاء وختم الطبيب:</span>
+                <div class="stamp-area"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="document-box">
+        <div class="document-heading">
+            <span class="document-icon">✦</span>
+            <h3>ترخيص أبوي</h3>
+            <span class="document-subtitle">AUTORISATION PARENTALE</span>
+        </div>
+
+        <p class="document-intro">
+            أنا الممضي أسفله، بصفتي وليّ أمر اللاعب المسجل أعلاه،
+            أصرّح بموافقتي على مشاركته في التدريبات والمنافسات
+            الرياضية التي ينظمها النادي.
+        </p>
+
+        <p class="document-intro">
+            كما أتعهد باحترام النظام الداخلي للنادي،
+            وأتحمل مسؤولية تقديم المعلومات والوثائق الصحيحة.
+        </p>
+
+        <div class="document-footer parent-footer">
+            <div>
+                <span>التاريخ:</span>
+                <div class="signature-line"></div>
+            </div>
+            <div>
+                <span>إمضاء الولي:</span>
+                <div class="parent-signature"></div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+            </form>
+        </section>
+    </main>
+
+    <section class="closing">
+        <h2>مستعد لتكون جزءًا من الفريق؟</h2>
+        <p>خطوتك الأولى نحو تجربة رياضية جديدة تبدأ من هنا.</p>
+        <a class="button" href="#registration">سجّل الآن</a>
+    </section>
+
+    <footer>
+        <strong>نادي شباب تيبازة لكرة السلة — CRBT 1963</strong>
+        <div>معًا لاكتشاف المواهب وتطوير كرة السلة.</div>
+        <small>© CRBT — جميع الحقوق محفوظة</small>
+    </footer>
+
+</body>
+</html>

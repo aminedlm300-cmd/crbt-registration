@@ -1,0 +1,710 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسجيلات | CRBT 1963</title>
+
+    <style>
+        :root {
+            --navy: #07182f;
+            --navy-light: #102a49;
+            --orange: #f59e0b;
+            --white: #fff;
+            --muted: #64748b;
+            --bg: #f3f6fa;
+        }
+
+        * { box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            margin: 0;
+            font-family: Tahoma, Arial, sans-serif;
+            background: var(--bg);
+            color: #172338;
+            line-height: 1.8;
+        }
+
+        a { text-decoration: none; }
+
+        .topbar {
+            background: #041022;
+            color: #dce6f3;
+            padding: 8px 7%;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 14px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+            border-bottom: 1px solid #ffffff18;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+        }
+
+        .brand img {
+            width: 67px;
+            height: 67px;
+            object-fit: contain;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid var(--orange);
+        }
+
+        .brand h2 {
+            margin: 0;
+            font-size: clamp(14px, 2vw, 19px);
+            line-height: 1.5;
+        }
+
+        .brand small {
+            color: var(--orange);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .nav-link {
+            color: white;
+            border: 1px solid #ffffff45;
+            border-radius: 7px;
+            padding: 9px 18px;
+            font-size: 14px;
+            transition: .2s;
+        }
+
+        .nav-link:hover {
+            background: var(--orange);
+            color: var(--navy);
+        }
+
+        .hero {
+            min-height: 490px;
+            display: flex;
+            align-items: center;
+            padding: 75px 8%;
+            color: white;
+            background:
+                linear-gradient(90deg, rgba(4,16,34,.95), rgba(4,16,34,.70)),
+                url("https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=2000&q=85")
+                center 45% / cover no-repeat;
+            border-bottom: 5px solid var(--orange);
+        }
+
+        .hero-content {
+            max-width: 760px;
+            animation: appear .8s ease both;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--orange);
+            border: 1px solid #f59e0b80;
+            background: #f59e0b12;
+            padding: 5px 13px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(30px, 5vw, 54px);
+            line-height: 1.5;
+            margin: 18px 0 12px;
+        }
+
+        .hero h1 span { color: var(--orange); }
+
+        .hero p {
+            color: #e0e8f2;
+            font-size: 16px;
+            max-width: 650px;
+            margin: 0 0 27px;
+        }
+
+        .button {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--orange);
+            color: #07182f;
+            border: 0;
+            border-radius: 8px;
+            padding: 13px 27px;
+            font: inherit;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform .2s, background .2s;
+        }
+
+        .button:hover {
+            background: #ffb52e;
+            transform: translateY(-2px);
+        }
+
+        .button-outline {
+            color: white;
+            border: 1px solid #ffffff70;
+            border-radius: 8px;
+            padding: 12px 22px;
+            display: inline-block;
+            margin-right: 8px;
+        }
+
+        .button-outline:hover { background: #ffffff15; }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 700px;
+            margin-top: 43px;
+            border-top: 1px solid #ffffff30;
+            padding-top: 20px;
+            gap: 20px;
+        }
+
+        .stat strong {
+            display: block;
+            color: var(--orange);
+            font-size: 23px;
+        }
+
+        .stat span {
+            color: #d6e0ec;
+            font-size: 12px;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-heading small {
+            color: #b66a00;
+            font-weight: bold;
+        }
+
+        .section-heading h2 {
+            color: var(--navy);
+            font-size: clamp(24px, 3vw, 34px);
+            margin: 5px 0;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .features {
+            padding: 65px 7%;
+            background: white;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .feature {
+            padding: 25px;
+            background: #f7f9fc;
+            border: 1px solid #e6ebf2;
+            border-radius: 13px;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 14px 35px #07182f12;
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            background: #fff0d4;
+            border-radius: 12px;
+            font-size: 24px;
+        }
+
+        .feature h3 {
+            color: var(--navy);
+            margin: 12px 0 5px;
+        }
+
+        .feature p {
+            color: var(--muted);
+            font-size: 14px;
+            margin: 0;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 65px auto;
+            padding: 0 18px;
+            scroll-margin-top: 25px;
+        }
+
+        .form-card {
+            background: white;
+            padding: clamp(22px, 5vw, 48px);
+            border-radius: 18px;
+            box-shadow: 0 15px 50px #07182f10;
+            border: 1px solid #e7ebf2;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-title .mini-logo {
+            width: 76px;
+            height: 76px;
+            object-fit: contain;
+            border-radius: 50%;
+            border: 2px solid var(--orange);
+            padding: 3px;
+            background: white;
+        }
+
+        .form-title h2 {
+            margin: 10px 0 0;
+            color: var(--navy);
+            font-size: 27px;
+        }
+
+        .form-title p {
+            color: var(--muted);
+            margin: 4px 0;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            min-width: 0;
+        }
+
+        
+.field label {
+    display: block;
+    color: #23344c;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.field input,
+.field select,
+.field textarea {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    min-height: 56px;
+    padding: 13px 14px;
+    border: 1px solid #d6deea;
+    border-radius: 9px;
+    background-color: #fbfcfe;
+    color: #07182f;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 15px;
+    opacity: 1;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: #64748b;
+    opacity: 1;
+    -webkit-text-fill-color: #64748b;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+    border-color: #f59e0b;
+    box-shadow: 0 0 0 3px #f59e0b25;
+    background-color: #fff;
+}
+
+.field input[type="date"] {
+    direction: ltr;
+    color-scheme: light;
+    cursor: pointer;
+}
+
+.field input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.ltr {
+    direction: ltr;
+    text-align: left;
+}
+
+        .errors {
+            color: #b91c1c;
+            font-size: 12px;
+        }
+
+        .notice {
+            background: #fff8e9;
+            border-right: 4px solid var(--orange);
+            color: #76501b;
+            padding: 14px 16px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-size: 13px;
+        }
+
+        .success {
+            background: #ecfdf5;
+            color: #166534;
+            border: 1px solid #bbf7d0;
+            padding: 15px;
+            border-radius: 9px;
+            text-align: center;
+            margin-bottom: 22px;
+        }
+
+        .submit-row { text-align: center; }
+
+        .submit-row .button {
+            width: 100%;
+            max-width: 360px;
+            font-size: 16px;
+        }
+
+        .closing {
+            background: var(--navy);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .closing h2 { margin: 0 0 8px; }
+        .closing p { color: #c8d5e5; margin: 0 0 20px; }
+
+        footer {
+            background: #041022;
+            color: #b9c6d7;
+            text-align: center;
+            padding: 23px 15px;
+            font-size: 13px;
+        }
+
+        footer strong { color: var(--orange); }
+
+        @keyframes appear {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 700px) {
+            header { padding: 12px 5%; }
+            .brand img { width: 54px; height: 54px; }
+            .nav-link { padding: 8px 11px; font-size: 12px; }
+            .hero { min-height: 440px; padding: 55px 7%; }
+            .hero p { font-size: 14px; }
+            .stats { gap: 10px; }
+            .stat strong { font-size: 19px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .features { padding: 45px 6%; }
+            .form-grid { grid-template-columns: 1fr; }
+            main { margin: 40px auto; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+.form-card input,
+.form-card select,
+.form-card textarea {
+    color: #06142d !important;
+    background-color: #ffffff !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #06142d !important;
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+    color: #64748b !important;
+    opacity: 1 !important;
+}
+
+.form-card input[type="date"] {
+    color: #06142d !important;
+    display: block !important;
+    min-height: 56px;
+    cursor: pointer;
+    color-scheme: light;
+}
+
+.form-card input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.print-button {
+    margin-top: 12px;
+    background: #07182f;
+    color: white;
+}
+
+.print-button:hover {
+    background: #102a49;
+}
+
+/* Print layout */
+@media print {
+    header,
+    .topbar,
+    .hero,
+    .features,
+    .closing,
+    footer,
+    .notice,
+    .submit-row {
+        display: none !important;
+    }
+
+    body {
+        background: white !important;
+    }
+
+    main {
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .form-card {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .field input {
+        color: #000 !important;
+        background: white !important;
+        border: 1px solid #999;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+   
+
+    <header>
+        <a class="brand" href="#" aria-label="الصفحة الرئيسية">
+            <img src="{% static 'registrations/images/crbt-logo.jfif' %}"
+                 alt="شعار نادي شباب تيبازة لكرة السلة">
+            <div>
+                <h2>نادي شباب تيبازة لكرة السلة</h2>
+                <small>CRBT · 1963</small>
+            </div>
+        </a>
+        <a class="nav-link" href="#registration">التسجيلات ↙</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">CRBT 1963 · تيبازة</span>
+            <h1>
+                يعلن نادي شباب تيبازة لكرة السلة<br>
+                عن <span>فتح باب التسجيلات</span>
+            </h1>
+            <p>
+                هل تحب كرة السلة وتحلم بتطوير مستواك؟
+                ندعوك للانضمام إلى عائلتنا الرياضية،
+                والتعلّم في أجواء من الانضباط والاحترام والعمل الجماعي.
+            </p>
+
+            <a class="button" href="#registration">ابدأ التسجيل الآن ←</a>
+            <a class="button-outline" href="#about">اكتشف النادي</a>
+
+            <div class="stats">
+                <div class="stat">
+                    <strong>1963</strong>
+                    <span>منذ 63 سنة</span>
+                </div>
+                <div class="stat">
+                    <strong>CRBT</strong>
+                <span>الشباب الرياضي لبلدية تيبازة</span>
+                </div>
+                <div class="stat">
+                    <strong>🏀</strong>
+                    <span>شغف كرة السلة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="about">
+        <div class="section-heading">
+            <small>مرحبًا بكم في عائلتنا</small>
+            <h2>أكثر من مجرد لعبة</h2>
+            <p>الرياضة، الانضباط، وروح الفريق.</p>
+        </div>
+
+        <div class="feature-grid">
+            <article class="feature">
+                <div class="feature-icon">🏀</div>
+                <h3>تطوير المهارات</h3>
+                <p>التدرّب على أساسيات كرة السلة والعمل على تطوير المستوى الرياضي.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">🤝</div>
+                <h3>روح الفريق</h3>
+                <p>تعزيز التعاون والاحترام والانضباط داخل الفريق وخارجه.</p>
+            </article>
+
+            <article class="feature">
+                <div class="feature-icon">🏆</div>
+                <h3>طموح رياضي</h3>
+                <p>تشجيع المواهب الشابة على التعلّم والتقدّم وتحقيق أهدافها.</p>
+            </article>
+        </div>
+    </section>
+
+    <main id="registration">
+        <section class="form-card">
+            <div class="form-title">
+                <img class="mini-logo"
+                     src="{% static 'registrations/images/crbt-logo.jfif' %}"
+                     alt="شعار CRBT">
+                <h2>استمارة تسجيل لاعب</h2>
+                <p>يرجى إدخال المعلومات بدقة قبل إرسال الطلب.</p>
+            </div>
+
+            {% if submitted %}
+                <div class="success" role="status">
+                    <strong>تم إرسال طلب التسجيل بنجاح!</strong><br>
+                    سيقوم النادي بمراجعة الطلب والتواصل معكم عند الحاجة.
+                </div>
+            {% endif %}
+
+            {% if form.non_field_errors %}
+                <div class="errors">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <form method="post" action="{% url 'home' %}">
+                {% csrf_token %}
+
+                <div class="form-grid">
+                    <div class="field">
+                        <label for="{{ form.first_name_ar.id_for_label }}">الاسم بالعربية *</label>
+                        {{ form.first_name_ar }}
+                        <div class="errors">{{ form.first_name_ar.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.last_name_ar.id_for_label }}">اللقب بالعربية *</label>
+                        {{ form.last_name_ar }}
+                        <div class="errors">{{ form.last_name_ar.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.first_name_latin.id_for_label }}">الاسم باللاتينية *</label>
+                        {{ form.first_name_latin }}
+                        <div class="errors">{{ form.first_name_latin.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.last_name_latin.id_for_label }}">اللقب باللاتينية *</label>
+                        {{ form.last_name_latin }}
+                        <div class="errors">{{ form.last_name_latin.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.birth_date.id_for_label }}">تاريخ الازدياد *</label>
+                        {{ form.birth_date }}
+                        <div class="errors">{{ form.birth_date.errors }}</div>
+                    </div>
+
+               <div class="field">
+    <label for="{{ form.birth_place.id_for_label }}">مكان الميلاد *</label>
+    {{ form.birth_place }}
+    <div class="errors">{{ form.birth_place.errors }}</div>
+</div>
+
+                    <div class="field">
+                        <label for="{{ form.guardian_phone.id_for_label }}">رقم هاتف الولي *</label>
+                        {{ form.guardian_phone }}
+                        <div class="errors">{{ form.guardian_phone.errors }}</div>
+                    </div>
+
+                    <div class="field">
+                        <label for="{{ form.email.id_for_label }}">البريد الإلكتروني (اختياري)</label>
+                        {{ form.email }}
+                        <div class="errors">{{ form.email.errors }}</div>
+                    </div>
+                </div>
+
+                <div class="notice">
+                    🔒 تُستخدم المعلومات لغرض التسجيل في النادي فقط،
+                    ولا تُعرض البيانات الشخصية للعامة. يرجى التأكد من موافقة
+                    ولي الأمر إذا كان اللاعب قاصرًا.
+                </div>
+
+                <div class="submit-row">
+    <button class="button" type="submit">إرسال طلب التسجيل ←</button>
+
+    <button class="button print-button" type="button" onclick="window.print()">
+        🖨️ طباعة الاستمارة
+    </button>
+</div>
+            </form>
+        </section>
+    </main>
+
+    <section class="closing">
+        <h2>مستعد لتكون جزءًا من الفريق؟</h2>
+        <p>خطوتك الأولى نحو تجربة رياضية جديدة تبدأ من هنا.</p>
+        <a class="button" href="#registration">سجّل الآن</a>
+    </section>
+
+    <footer>
+        <strong>نادي شباب تيبازة لكرة السلة — CRBT 1963</strong>
+        <div>معًا لاكتشاف المواهب وتطوير كرة السلة.</div>
+        <small>© CRBT — جميع الحقوق محفوظة</small>
+    </footer>
+</body>
+</html>
