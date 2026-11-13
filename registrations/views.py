@@ -46,3 +46,9 @@ def print_registration(request):
     return render(request, "registrations/print_form.html", {
         "registration": registration,
     })
+
+def training_program(request):
+    return render(
+        request,
+        "registrations/training_program.html"
+    )

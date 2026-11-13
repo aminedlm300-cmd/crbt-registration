@@ -1099,6 +1099,26 @@
     }
 }
 
+.training-program-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 24px;
+    background: transparent;
+    color: #f59e0b;
+    border: 1px solid #f59e0b;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 15px;
+    transition: all 0.25s ease;
+}
+
+.training-program-btn:hover {
+    background: #f59e0b;
+    color: #07182f;
+    transform: translateY(-3px);
+}
 
     </style>
 </head>
@@ -1137,6 +1157,9 @@
 
             <a class="button" href="#registration">ابدأ التسجيل الآن ←</a>
             <a class="button-outline" href="#about">اكتشف النادي</a>
+            <a href="{% url 'training_program' %}" class="training-program-btn">
+    🏀 برنامج التدريبات
+</a>
 
             <div class="stats">
                 <div class="stat">

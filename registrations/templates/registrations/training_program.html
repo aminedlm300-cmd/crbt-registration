@@ -1,0 +1,265 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>برنامج التدريبات | CRBT 1963</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Tahoma, Arial, sans-serif;
+            background: #f1f4f8;
+            color: #07182f;
+        }
+
+        .hero {
+            background:
+                radial-gradient(circle at 15% 20%, #17365c 0, transparent 35%),
+                linear-gradient(135deg, #050b18, #0b1d36);
+            color: white;
+            padding: 55px 20px 65px;
+            text-align: center;
+        }
+
+        .club-label {
+            display: inline-block;
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .hero h1 {
+            font-size: clamp(27px, 5vw, 42px);
+            margin: 22px 0 10px;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .container {
+            width: min(900px, calc(100% - 30px));
+            margin: -30px auto 50px;
+            position: relative;
+        }
+
+        .schedule-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 15px 45px #07182f12;
+        }
+
+        .schedule-heading {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .schedule-heading h2 {
+            font-size: 25px;
+            margin: 0 0 8px;
+        }
+
+        .schedule-heading p {
+            color: #64748b;
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .training-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .training-day {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            border-right: 5px solid #f59e0b;
+            border-radius: 12px;
+            background: #fff;
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .training-day:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 22px #07182f12;
+        }
+
+        .day-icon {
+            width: 55px;
+            height: 55px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            background: #fff5df;
+            font-size: 25px;
+        }
+
+        .day-info {
+            flex: 1;
+        }
+
+        .day-info h3 {
+            margin: 0 0 7px;
+            font-size: 19px;
+        }
+
+        .day-info p {
+            margin: 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .time {
+            direction: ltr;
+            white-space: nowrap;
+            color: #07182f;
+            background: #f1f5f9;
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .notice {
+            margin-top: 22px;
+            padding: 16px;
+            background: #fff8e9;
+            border-right: 4px solid #f59e0b;
+            border-radius: 9px;
+            color: #80530b;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 13px 25px;
+            border-radius: 9px;
+            background: #07182f;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: .2s;
+        }
+
+        .back-button:hover {
+            background: #f59e0b;
+            color: #07182f;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            font-size: 12px;
+            padding: 0 15px 25px;
+        }
+
+        @media (max-width: 600px) {
+            .schedule-card {
+                padding: 20px 15px;
+            }
+
+            .training-day {
+                flex-wrap: wrap;
+                padding: 15px;
+            }
+
+            .time {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="hero">
+        <span class="club-label">CRBT · 1963 · تيبازة</span>
+
+        <h1>برنامج التدريبات</h1>
+
+        <p>
+            أوقات التدريبات الأسبوعية لنادي الشباب الرياضي لبلدية تيبازة
+        </p>
+    </header>
+
+    <main class="container">
+        <section class="schedule-card">
+
+            <div class="schedule-heading">
+                <h2>مواعيد الحصص التدريبية</h2>
+                <p>نلتقي في الملعب ونعمل معاً على تطوير مستوانا 🏀</p>
+            </div>
+
+            <div class="training-list">
+
+                <article class="training-day">
+                    <div class="day-icon">🏀</div>
+                    <div class="day-info">
+                        <h3>يوم الجمعة</h3>
+                        <p>الحصة التدريبية الأولى</p>
+                    </div>
+                    <div class="time">10:30 AM – 12:00 PM</div>
+                </article>
+
+                <article class="training-day">
+                    <div class="day-icon">🏀</div>
+                    <div class="day-info">
+                        <h3>يوم السبت</h3>
+                        <p>الحصة التدريبية الثانية</p>
+                    </div>
+                    <div class="time">10:00 AM – 1:00 PM</div>
+                </article>
+
+                <article class="training-day">
+                    <div class="day-icon">🏀</div>
+                    <div class="day-info">
+                        <h3>يوم الثلاثاء</h3>
+                        <p>الحصة التدريبية الثالثة</p>
+                    </div>
+                    <div class="time">2:30 PM – 4:00 PM</div>
+                </article>
+
+            </div>
+
+            <div class="notice">
+                <strong>ملاحظة:</strong>
+                يرجى من اللاعبين الحضور في الوقت المحدد والالتزام بمواعيد التدريبات.
+            </div>
+
+            <div style="text-align:center;">
+                <a href="{% url 'home' %}" class="back-button">
+                    ← العودة إلى الصفحة الرئيسية
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <footer>
+        CRBT 1963 · CHABAB RIADI BALADIAT TIPASA
+    </footer>
+
+</body>
+</html>
