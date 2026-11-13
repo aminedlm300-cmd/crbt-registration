@@ -1240,11 +1240,18 @@
             </div>
 
             {% if submitted %}
-                <div class="success" role="status">
-                    <strong>تم إرسال طلب التسجيل بنجاح!</strong><br>
-                    سيقوم النادي بمراجعة الطلب والتواصل معكم عند الحاجة.
-                </div>
-            {% endif %}
+    <div class="success" role="status">
+        <strong>تم إرسال طلب التسجيل بنجاح!</strong><br>
+        سيقوم النادي بمراجعة الطلب والتواصل معكم عند الحاجة.
+
+        <br><br>
+
+        <a href="{% url 'print_registration' %}"
+           class="button print-button">
+            🖨️ طباعة الاستمارة
+        </a>
+    </div>
+{% endif %}
 
             {% if form.non_field_errors %}
                 <div class="errors">{{ form.non_field_errors }}</div>
@@ -1316,12 +1323,6 @@
                         إرسال طلب التسجيل ←
                     </button>
 
-                    <button
-                        class="button print-button"
-                        type="button"
-                        onclick="window.print()">
-                        🖨️ طباعة الاستمارة
-                    </button>
                 </div>
             
             
