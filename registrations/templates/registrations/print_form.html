@@ -100,17 +100,33 @@
 <body>
 
     <div class="toolbar">
-        <button class="print-button" onclick="window.print()">
+        <button
+            type="button"
+            class="print-button"
+            onclick="printForm()">
             🖨️ طباعة الاستمارة
         </button>
     </div>
 
     <div class="paper">
         <img
-    src="{% static 'registrations/images/crbt-registration-form.png' %}"
-    alt="CRBT Registration Form"
->
+            src="{% static 'registrations/images/crbt-registration-form.png' %}"
+            alt="CRBT Registration Form"
+        >
     </div>
+
+    <script>
+        function printForm() {
+            if (typeof window.print === "function") {
+                window.print();
+            } else {
+                alert(
+                    "خاصية الطباعة غير مدعومة في هذا المتصفح. " +
+                    "يرجى فتح الصفحة في Google Chrome أو Safari."
+                );
+            }
+        }
+    </script>
 
 </body>
 </html>

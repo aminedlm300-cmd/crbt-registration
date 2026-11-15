@@ -21,6 +21,10 @@
             box-sizing: border-box;
         }
 
+        img {
+    max-width: 100%;
+        }
+
         html {
             scroll-behavior: smooth;
         }
@@ -31,6 +35,9 @@
             background: var(--bg);
             color: #172338;
             line-height: 1.8;
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         a {
@@ -1341,7 +1348,8 @@
                     ولي الأمر إذا كان اللاعب قاصرًا.
                 </div>
 
-                <div class="submit-row">
+                
+<div class="submit-row">
     <button class="button" type="submit">
         إرسال طلب التسجيل ←
     </button>
@@ -1349,7 +1357,9 @@
     <a href="{% url 'print_registration' %}"
        class="button print-button">
         🖨️ طباعة الاستمارة
+    </a>
 </div>
+
             
             
 <!-- MEDICAL CERTIFICATE AND PARENTAL AUTHORIZATION -->
